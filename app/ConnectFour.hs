@@ -51,7 +51,7 @@ checkWinner board
 
 -- holds state of board and current player
 -- newtype so that we can define a Show that doesn't use the default Array implementaton
-newtype GameState = GameState (Board, Chip) deriving Eq
+newtype GameState = GameState (Board, Chip)
 
 instance Show GameState where
     show (GameState (board, player)) = (show player) ++ "'s Turn\n" ++ boardString ++ colNumbers
