@@ -1,4 +1,6 @@
 module BoardHelper (arrayRows, getLines, RectArray) where
+-- helper functions for rectangular arrays (arrays indexed with (Int, Int) values)
+
 
 import Data.Array
 import Data.List
