@@ -46,11 +46,13 @@ decideMove :: StdGen -> GameState -> Move
 decideMove rand game
     | winExists  = head (winningMoves game) -- pick the win if available
     | lossExists && canAvoid = head (survivingMoves) -- pick the move to not die if necessary and possible    
-    | otherwise  = (validMoves game) !! (fst $ randomR (0,length (validMoves game)) rand) -- otherwise, pick a random move
+    | otherwise  = (validMoves game) !! (fst $ randomR (0, numMoves - 1) rand) -- otherwise, pick a random move
     where winExists  = (not . null) (winningMoves game)
           lossExists = (not . null) (losingMoves  game)
           canAvoid   = (length $ losingMoves game) < width -- ie, the losing moves don't cover every column
           
           survivingMoves = (validMoves game) \\ (losingMoves game)
           (width, height) = snd (bounds $ pullBoard game)
+          
+          numMoves = length (validMoves game)
           
